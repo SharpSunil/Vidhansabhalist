@@ -1,0 +1,39 @@
+.map-parent {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding:40px 0px 0px 0px;
+  .map-cont {
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+
+    #info-panel {
+      width: 250px;
+      height: auto;
+      margin-left: 20px;
+      background: #ece1c0;
+      padding: 20px;
+      border-radius: 10px;
+      ul{
+        margin-top:10px;
+        li{
+            margin-left:14px;
+           padding:2px 0px;
+        }
+      }
+    }
+   
+  }
+   .map-note{
+        display: flex;
+        width:100%;
+        justify-content: center;
+        background:rgb(0, 0, 0);
+        padding:5px 0px;color:white;
+    }
+}

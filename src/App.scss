@@ -1,0 +1,68 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --accent: #d6b637;
+  --accent2: #7c6e4a;
+  --gradient: linear-gradient(to right, var(--accent), #cdbb90, var(--accetn2));
+  --unit: 16px;
+  --max-width: 1400px;
+  --trans: all 0.3s ease-in-out;
+  --trans-sl : all 0.4s ease-out;
+  --shadow: 0px 0px 15px rgba(0, 0, 0, 0.172);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+p{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+.parent {
+  width: 100%;
+
+  .cont {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--unit);
+  }
+}
+
+
+.bg-img-cover{
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+.bg-img-contain{
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
