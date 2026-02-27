@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { districtData } from "../data/districtData";
 import "./map.scss";
+import DistrictMap from "./districtMap/DistrictMap";
 
 export default function Map() {
   const mapRef = useRef();
   const districtElements = useRef({}); // store svg elements
   const [search, setSearch] = useState("");
-
+  // const [districtName, setDistrictName] = useState("");
   const [infoHTML, setInfoHTML] = useState(`
       <h3>District Info</h3>
       <p>Click on a district to select</p>
@@ -21,8 +22,8 @@ export default function Map() {
     const BASE = "#eaeaea";
     const SELECTED = "#ff5722";
 
-    const districtName = Object.keys(districtElements.current).find(d =>
-      d.toLowerCase().includes(value.toLowerCase())
+    const districtName = Object.keys(districtElements.current).find((d) =>
+      d.toLowerCase().includes(value.toLowerCase()),
     );
 
     if (!districtName) return;
@@ -32,7 +33,7 @@ export default function Map() {
       Object.keys(districtElements.current).indexOf(districtName) + 1;
 
     // reset all colors
-    Object.values(districtElements.current).forEach(p => {
+    Object.values(districtElements.current).forEach((p) => {
       p.style.fill = BASE;
     });
 
@@ -43,7 +44,7 @@ export default function Map() {
     const list = districtData[districtName] || [];
     setInfoHTML(`
         <h3>${number}. ${districtName}</h3>
-        <ul>${list.map(v => `<li>${v}</li>`).join("")}</ul>
+        <ul>${list.map((v) => `<li>${v}</li>`).join("")}</ul>
     `);
   }
 
@@ -54,7 +55,7 @@ export default function Map() {
     const list = districtData["Palghar"] || [];
     setInfoHTML(`
       <h3>36. Palghar <span style="color:#ff5722;font-size:12px">(Created 2014)</span></h3>
-      <ul>${list.map(v => `<li>${v}</li>`).join("")}</ul>
+      <ul>${list.map((v) => `<li>${v}</li>`).join("")}</ul>
       <p style="font-size:11px;color:#666;font-style:italic">
       * Not visible on 2011 map (was part of Thane district)
       </p>
@@ -78,13 +79,42 @@ export default function Map() {
       const SELECTED = "#ff5722";
 
       const districtOrder = [
-        "Ahmednagar", "Akola", "Amravati", "Aurangabad", "Bhandara",
-        "Beed", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli",
-        "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur",
-        "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded",
-        "Nandurbar", "Nashik", "Osmanabad", "Parbhani", "Pune",
-        "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg",
-        "Solapur", "Thane", "Wardha", "Washim", "Yavatmal", "Palghar"
+        "Ahmednagar",
+        "Akola",
+        "Amravati",
+        "Aurangabad",
+        "Bhandara",
+        "Beed",
+        "Buldhana",
+        "Chandrapur",
+        "Dhule",
+        "Gadchiroli",
+        "Gondia",
+        "Hingoli",
+        "Jalgaon",
+        "Jalna",
+        "Kolhapur",
+        "Latur",
+        "Mumbai City",
+        "Mumbai Suburban",
+        "Nagpur",
+        "Nanded",
+        "Nandurbar",
+        "Nashik",
+        "Osmanabad",
+        "Parbhani",
+        "Pune",
+        "Raigad",
+        "Ratnagiri",
+        "Sangli",
+        "Satara",
+        "Sindhudurg",
+        "Solapur",
+        "Thane",
+        "Wardha",
+        "Washim",
+        "Yavatmal",
+        "Palghar",
       ];
 
       const paths = svg.querySelectorAll("path");
@@ -104,7 +134,7 @@ export default function Map() {
         const bbox = el.getBBox();
         const text = document.createElementNS(
           "http://www.w3.org/2000/svg",
-          "text"
+          "text",
         );
         text.setAttribute("x", bbox.x + bbox.width / 2);
         text.setAttribute("y", bbox.y + bbox.height / 2);
@@ -119,7 +149,7 @@ export default function Map() {
         if (name === "Thane") {
           const circle = document.createElementNS(
             "http://www.w3.org/2000/svg",
-            "circle"
+            "circle",
           );
           circle.setAttribute("cx", bbox.x + bbox.width * 0.3);
           circle.setAttribute("cy", bbox.y + bbox.height * 0.3);
@@ -153,6 +183,7 @@ export default function Map() {
             el.style.fill = SELECTED;
             selectedEl = el;
             showData(name, number);
+            // setDistrictName(name);
           }
         });
       });
@@ -161,13 +192,17 @@ export default function Map() {
         const list = districtData[name] || [];
         setInfoHTML(`
           <h3>${number}. ${name}</h3>
-          <ul>${list.map(v => `<li>${v}</li>`).join("")}</ul>
+          <ul>${list.map((v) => `<li>${v}</li>`).join("")}</ul>
         `);
       }
     };
 
     obj.addEventListener("load", onLoad);
   }, []);
+
+
+
+
 
   /* =========================
      UI
@@ -178,12 +213,16 @@ export default function Map() {
         <h2>Map of Maharashtra Districts with Assembly</h2>
 
         <div className="map-cont cont">
-          <object
+        
+           <object
             ref={mapRef}
             id="map"
             data="/2011_Dist.svg"
             type="image/svg+xml"
           />
+          
+      
+         
 
           <div className="right-data">
             <input
